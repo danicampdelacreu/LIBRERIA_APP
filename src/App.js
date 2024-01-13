@@ -1,23 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+// importaciones //
+import React, { useState, useEffect } from 'react';
+import BooksList from './components/BooksList';
+import BookDetails from './components/BooksDetails';
+import AddBook from './components/AddBook';
 
 function App() {
+  
+  const [books, setBooks] = useState([]);
+
+  // Llamada fetch a URL de API_REST para traer todos los libros
+  useEffect(() => {
+    const fetchBooks = () => {
+      fetch('http://localhost:3000/books')
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            console.error('Error al obtener la lista de libros');
+          }
+        })
+        .then(data => {
+          setBooks(data);
+        })
+        .catch(error => {
+          console.error('Error en la llamada a la API:', error);
+        });
+    };
+
+    fetchBooks();
+  }, []);
+
+  
+  // funcion para añadir libro
+  function handleAddBook(addedBook) {
+    setBooks([...books, addedBook]);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    // Mostramos en pantalla Lista de libros BooksList
+    // Mostramos AddBook con un formulario
+    <div>
+      <h1>Librería</h1>
+      <BooksList books={books}  />
+      <AddBook onAddBook={handleAddBook} />
     </div>
   );
 }
