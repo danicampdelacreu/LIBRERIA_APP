@@ -83,7 +83,7 @@ const BooksList = () => {
             className="list-group-item"
           >
             <strong>Titulo: </strong>{book.Nombre}
-            <button onClick={() => handleViewBook(book)}>Resumen</button> 
+            <button onClick={() => handleViewBook(book)}>Resumen</button>
             <button onClick={() => handleEditBook(book)}>Edit</button>
             <button onClick={() => handleDeleteBook(book.id)}>Delete</button>
           </li>

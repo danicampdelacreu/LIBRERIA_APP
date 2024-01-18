@@ -5,7 +5,7 @@ import BookDetails from './components/BooksDetails';
 import AddBook from './components/AddBook';
 
 function App() {
-  
+
   const [books, setBooks] = useState([]);
 
   // Llamada fetch a URL de API_REST para traer todos los libros
@@ -30,7 +30,7 @@ function App() {
     fetchBooks();
   }, []);
 
-  
+
   // funcion para añadir libro
   function handleAddBook(addedBook) {
     setBooks([...books, addedBook]);
@@ -41,7 +41,7 @@ function App() {
     // Mostramos AddBook con un formulario
     <div>
       <h1>Librería</h1>
-      <BooksList books={books}  />
+      <BooksList books={books} />
       <AddBook onAddBook={handleAddBook} />
     </div>
   );

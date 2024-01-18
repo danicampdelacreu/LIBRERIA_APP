@@ -38,7 +38,7 @@ const AddBook = ({ onAddBook }) => {
             Resumen: '',
           });
           // Recargamos la página
-        window.location.reload();
+          window.location.reload();
 
         } else {
           console.error('Error al agregar el libro:', response.statusText);
